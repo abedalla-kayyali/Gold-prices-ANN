@@ -11,7 +11,7 @@ Download the data and adjust `DATA_PATH` in `data_importer.py` accordingly.
 
 ### Other datasets
 
-The `ANNRegressor` can be used for any regression problem. The parameter's can be passed in the constructor and `fit`/`k_fold_x_validation` method for training.  
+The `ANNRegressor` can be used for any regression problem. The parameters can be passed in the constructor and `fit`/`k_fold_x_validation` method for training.  
 Weights can be saved and loaded during training and testing respectively.  
 Predictions can be made via the `predict` method.  
 For further details please view the `ann.py` file, it contains docstrings and comments explaining each step of the process.

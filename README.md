@@ -41,7 +41,7 @@ For the prediction of gold prices.
 
 ## Results
 
-Output of training
+Output of training [OLD VERSION'S DEBUGGING INFO]
 
 ```(bash)
 Getting data...

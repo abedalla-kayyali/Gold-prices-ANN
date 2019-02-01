@@ -334,7 +334,13 @@ class ANNRegressor():
                     r2ed_prev = self._calc_r2ed(targets_train, model_out)
                 # Print progress of training
                 if (not i == 0) and ((i % 100) == 0):
-                    print(i, ' iterations, ', r2ed_curr*100, '% R squared...')
+                    temp_pred = session.run(
+                        self._y,
+                        feed_dict={self._x_ph: inputs_test}
+                    )
+                    temp_r2ed = self._calc_r2ed(targets_test, temp_pred)*100
+                    print(i, ' iterations |', round(r2ed_curr*100, 3), '% train R squared', end=' | ')
+                    print(round(temp_r2ed, 3), '% test R squared ...')
             # Calculate final output
             final_output_train = session.run(
                 self._y,

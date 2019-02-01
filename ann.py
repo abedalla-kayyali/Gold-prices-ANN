@@ -67,12 +67,11 @@ class FinalLayer():
         return tf.matmul(input_to_layer, self._w)
 
 class ANNRegressor():
-    def __init__(self, learning_rate, no_hidden, hidden_depths, layer_pkeeps, cache_decay, momentum):
+    def __init__(self, learning_rate, hidden_depths, layer_pkeeps, cache_decay, momentum):
         """ANN regressor.
         
         Arguments:
             learning_rate {float} -- Learning rate for Gradient descent
-            no_hidden {int} -- Number of hidden layers in the network, >= 1
             hidden_depths {list} -- Depths of each layer, excluding final layer
             layer_pkeeps {list} -- Probability of keeping nodes/neurons for each layer, including input layer
             cache_decay {float} -- Cache decay rate for RMSProp
@@ -80,7 +79,7 @@ class ANNRegressor():
         """
 
         # Number of hidden layers
-        self._no_hl = no_hidden
+        self._no_hl = len(hidden_depths)
         # Depth of hidden layers
         self._hl_depths = hidden_depths
         # Learning rate
@@ -419,7 +418,7 @@ def main():
     '''print('Getting data...')
     inputs, outputs = synthetic_data()
     print('Initializing model...')
-    model = ANNRegressor(0.005, 2, [5, 5], [1, 1, 1], 0.9, 0.9)
+    model = ANNRegressor(0.005, [5, 5], [1, 1, 1], 0.9, 0.9)
     inputs = model.add_input_bias_col(inputs)
     print('Training model...')
     model.fit(inputs, outputs, 1000, 10, 30, plot_results=True)'''
@@ -428,7 +427,7 @@ def main():
     print('Getting data...')
     inputs, outputs = get_gold_prices()
     print('Initializing model...')
-    model = ANNRegressor(0.005, 2, [15, 15], [1, 1, 1], 0.9, 0.9)
+    model = ANNRegressor(0.005, [15, 15], [1, 1, 1], 0.9, 0.9)
     inputs = model.add_input_bias_col(inputs)
     print('Training model...')
     model.fit(inputs, outputs, 1000, 10, 30, plot_results=True)
